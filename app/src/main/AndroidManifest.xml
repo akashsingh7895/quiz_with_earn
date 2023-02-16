@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.avssolution.akashsingh.quizearnxyz">
+    package="com.avs.akashsingh.newapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
-        android:name="com.avssolution.akashsingh.quizearnxyz.Model.appClass"
-        android:allowBackup="true"
+        android:name="com.avs.akashsingh.newapp.Model.appClass"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewApp">
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.DailyCheckActivity"
+            android:name="com.avs.akashsingh.newapp.DailyCheckActivity"
             android:exported="false" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.ScratchCardActivity"
+            android:name="com.avs.akashsingh.newapp.ScratchCardActivity"
             android:exported="false" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.WatchVideoActivity"
+            android:name="com.avs.akashsingh.newapp.WatchVideoActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.UpdateProfileAcvity"
+            android:name="com.avs.akashsingh.newapp.UpdateProfileAcvity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.ForgotPasswordActivity"
+            android:name="com.avs.akashsingh.newapp.ForgotPasswordActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.SpinWheelActivity"
+            android:name="com.avs.akashsingh.newapp.SpinWheelActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.SplashActivity"
+            android:name="com.avs.akashsingh.newapp.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,31 +42,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.LeaderBordActivity"
+            android:name="com.avs.akashsingh.newapp.LeaderBordActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.ProfileActivity"
+            android:name="com.avs.akashsingh.newapp.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.ResultActivity"
+            android:name="com.avs.akashsingh.newapp.ResultActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.QuizActivity"
+            android:name="com.avs.akashsingh.newapp.QuizActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.MyWalletActivity"
+            android:name="com.avs.akashsingh.newapp.MyWalletActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.CategoryActivity"
+            android:name="com.avs.akashsingh.newapp.CategoryActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.LogInActivity"
+            android:name="com.avs.akashsingh.newapp.LogInActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.SignUpActivity"
+            android:name="com.avs.akashsingh.newapp.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name="com.avssolution.akashsingh.quizearnxyz.MainActivity"
+            android:name="com.avs.akashsingh.newapp.MainActivity"
             android:exported="true" />
 
         <meta-data

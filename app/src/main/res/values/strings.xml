@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Scratch and win</string>
+    <string name="app_name">Quiz with Earn</string>
 
     <string name="drawerOpen">open</string>
     <string name="drawerClose">close</string>
@@ -44,6 +44,16 @@
     <string name="inter">c21e007bb1913c22</string>
     <string name="netive">f2a65bdfb743ccd8</string>
     <string name="reward">ae6352fe9023e3b3</string>
+
+    <!--    Facebook Ads Test  -->
+
+    <string name="fb_banner_ads">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
+    <string name="fb_inter_ads">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
+
+    <!--    Facebook Ads Live  -->
+<!--    <string name="fb_banner_ads">878960280020939_878970730019894</string>-->
+<!--    <string name="fb_inter_ads">878960280020939_878969426686691</string>-->
+
 
 
 </resources>

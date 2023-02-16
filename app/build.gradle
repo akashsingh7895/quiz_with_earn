@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
-        applicationId "com.avssolution.akashsingh.quizearnxyz"
+        applicationId "com.avs.akashsingh.newapp"
         minSdk 21
-        targetSdk 31
-        versionCode 9
-        versionName "9.0"
+        targetSdk 32
+        versionCode 11
+        versionName "11.0"
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -57,7 +57,7 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation 'com.google.android.gms:play-services-ads:21.1.0'
+  //  implementation 'com.google.android.gms:play-services-ads:21.1.0'
 
     implementation project(':nativetemplates')
 //    //noinspection GradlePath
@@ -65,6 +65,8 @@ dependencies {
 
     //applovin
     implementation 'com.applovin:applovin-sdk:11.3.3'
+
+    implementation 'com.facebook.android:audience-network-sdk:6.12.0'
 
 
 }

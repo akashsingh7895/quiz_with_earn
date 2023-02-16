@@ -4,15 +4,15 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.avssolution.akashsingh.quizearnxyz",
+  "applicationId": "com.avs.akashsingh.newapp",
   "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 9,
-      "versionName": "9.0",
+      "versionCode": 11,
+      "versionName": "11.0",
       "outputFile": "AndroidManifest.xml"
     }
   ],
