@@ -17,16 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anupkumarpanwar.scratchview.ScratchView;
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.MaxReward;
-import com.applovin.mediation.MaxRewardedAdListener;
-import com.applovin.mediation.ads.MaxInterstitialAd;
-import com.applovin.mediation.ads.MaxRewardedAd;
-import com.applovin.mediation.nativeAds.MaxNativeAdListener;
-import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
-import com.applovin.mediation.nativeAds.MaxNativeAdView;
+
 import com.avs.akashsingh.newapp.databinding.ActivityScratchCardBinding;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -46,7 +37,7 @@ import java.util.Calendar;
 import java.util.Objects;
 import java.util.Random;
 
-public class ScratchCardActivity extends AppCompatActivity implements MaxAdListener, MaxRewardedAdListener {
+public class ScratchCardActivity extends AppCompatActivity {
 
     ActivityScratchCardBinding binding;
 
@@ -67,12 +58,6 @@ public class ScratchCardActivity extends AppCompatActivity implements MaxAdListe
 
 
 
-    //applovin ads
-    private MaxInterstitialAd interstitialAd;
-    private MaxNativeAdLoader nativeAdLoader;
-    private MaxAd nativeAd;
-    private MaxRewardedAd rewardedAd;
-    private int           retryAttempt;
 
 
     // fb ads
@@ -90,11 +75,6 @@ public class ScratchCardActivity extends AppCompatActivity implements MaxAdListe
         setContentView(binding.getRoot());
 
 
-        interstitialAd = new MaxInterstitialAd(getString(R.string.inter),this);
-        interstitialAd.setListener(this);
-        interstitialAd.loadAd();
-        loadnetiveAd();
-        createRewardedAd();
 
         dialog = new Dialog(this);
         dialog1 = new Dialog(this);
@@ -126,7 +106,7 @@ public class ScratchCardActivity extends AppCompatActivity implements MaxAdListe
         // fb sdk
 
         //// banner ads
-        adView = new AdView(this, getResources().getString(R.string.fb_banner_ads), AdSize.BANNER_HEIGHT_50);
+        adView = new AdView(this, getResources().getString(R.string.fb_banner_ads2), AdSize.BANNER_HEIGHT_50);
         binding.bannerContainer.addView(adView);
         adView.loadAd();
 
@@ -238,7 +218,7 @@ public class ScratchCardActivity extends AppCompatActivity implements MaxAdListe
                                                 }
                                             }
                                         });
-                                Toast.makeText(getApplicationContext(), "Show", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), "Show", Toast.LENGTH_SHORT).show();
                             }else {
 
                                 FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -257,7 +237,7 @@ public class ScratchCardActivity extends AppCompatActivity implements MaxAdListe
                                             }
                                         });
 
-                                Toast.makeText(ScratchCardActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(ScratchCardActivity.this, "Failed", Toast.LENGTH_SHORT).show();
 
                                 startActivity(getIntent());
                                 overridePendingTransition(0,0);
@@ -305,68 +285,22 @@ public class ScratchCardActivity extends AppCompatActivity implements MaxAdListe
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ScratchCardActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                if (fInterstitialAd.isAdLoaded()){
+                    fInterstitialAd.show();
+                    Intent intent = new Intent(ScratchCardActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(ScratchCardActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         });
 
     }
-    void createRewardedAd(){
 
-        rewardedAd = MaxRewardedAd.getInstance( getString(R.string.reward), this );
-        rewardedAd.setListener( this );
-
-        rewardedAd.loadAd();
-    }
-
-
-    void loadnetiveAd(){
-
-        FrameLayout nativeAdContainer = findViewById( R.id.native_ad_layout );
-
-        nativeAdLoader = new MaxNativeAdLoader( getString(R.string.netive), this );
-        nativeAdLoader.setNativeAdListener( new MaxNativeAdListener()
-        {
-            @Override
-            public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad)
-            {
-                nativeAdContainer.setVisibility(View.VISIBLE);
-               // loadingDialog.dismiss();
-                // Clean up any pre-existing native ad to prevent memory leaks.
-                if ( nativeAd != null )
-                {
-                    nativeAdLoader.destroy( nativeAd );
-                }
-
-                // Save ad for cleanup.
-                nativeAd = ad;
-
-                // Add ad view to view.
-                nativeAdContainer.removeAllViews();
-                nativeAdContainer.addView( nativeAdView );
-            }
-
-            @Override
-            public void onNativeAdLoadFailed(final String adUnitId, final MaxError error)
-            {
-                nativeAdContainer.setVisibility(View.GONE);
-                // Toast.makeText(MainActivity.this, "NetiveFailed", Toast.LENGTH_SHORT).show();
-              //  loadingDialog.dismiss();
-                // We recommend retrying with exponentially higher delays up to a maximum delay
-            }
-
-            @Override
-            public void onNativeAdClicked(final MaxAd ad)
-            {
-                // Optional click callback
-               // loadingDialog.dismiss();
-            }
-        } );
-
-        nativeAdLoader.loadAd();
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -376,63 +310,5 @@ public class ScratchCardActivity extends AppCompatActivity implements MaxAdListe
         finish();
     }
 
-    @Override
-    public void onAdLoaded(MaxAd ad) {
 
-    }
-
-    @Override
-    public void onAdDisplayed(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdHidden(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdClicked(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdLoadFailed(String adUnitId, MaxError error) {
-
-    }
-
-    @Override
-    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-    }
-
-    @Override
-    public void onRewardedVideoStarted(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onRewardedVideoCompleted(MaxAd ad) {
-//        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-//        firestore.collection("USERS")
-//                .document(FirebaseAuth.getInstance().getUid())
-//                .update("coins", FieldValue.increment(randomNumber))
-//                .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if (task.isSuccessful()){
-//                            //dialog.show();
-//                            Toast.makeText(ScratchCardActivity.this, "Coins Add", Toast.LENGTH_SHORT).show();
-//                        }else {
-//                            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-
-    }
-
-    @Override
-    public void onUserRewarded(MaxAd ad, MaxReward reward) {
-
-    }
 }

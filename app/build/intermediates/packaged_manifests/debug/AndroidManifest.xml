@@ -32,8 +32,9 @@
         </intent>
     </queries>
 
-    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
 
     <application
         android:name="com.avs.akashsingh.newapp.Model.appClass"
@@ -44,7 +45,6 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.NewApp" >
         <activity
             android:name="com.avs.akashsingh.newapp.DailyCheckActivity"
@@ -210,56 +210,6 @@
             </intent-filter>
         </service>
 
-        <provider
-            android:name="com.applovin.sdk.AppLovinInitProvider"
-            android:authorities="com.avs.akashsingh.newapp.applovincontentprovider"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            android:initOrder="101" /> <!-- Init order is 101 so we're before Firebase/Google which uses 100 -->
-        <activity
-            android:name="com.applovin.adview.AppLovinFullscreenActivity"
-            android:configChanges="keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-            android:exported="false"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind" />
-        <activity
-            android:name="com.applovin.sdk.AppLovinWebViewActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|uiMode" />
-        <activity
-            android:name="com.applovin.mediation.MaxDebuggerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|uiMode"
-            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
-        <activity
-            android:name="com.applovin.mediation.MaxDebuggerDetailActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|uiMode"
-            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
-        <activity
-            android:name="com.applovin.mediation.MaxDebuggerMultiAdActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|uiMode"
-            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
-        <activity
-            android:name="com.applovin.mediation.MaxDebuggerAdUnitsListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|uiMode"
-            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
-        <activity
-            android:name="com.applovin.mediation.MaxDebuggerAdUnitDetailActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|uiMode"
-            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
-        <activity
-            android:name="com.applovin.mediation.MaxDebuggerTestLiveNetworkActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|uiMode"
-            android:theme="@style/com.applovin.mediation.MaxDebuggerActivity.Theme" />
-
-        <service
-            android:name="com.applovin.impl.sdk.utils.AppKilledService"
-            android:exported="false"
-            android:stopWithTask="false" />
-        <service
-            android:name="com.applovin.impl.adview.activity.FullscreenAdService"
-            android:exported="false"
-            android:stopWithTask="false" />
-
         <activity
             android:name="com.facebook.ads.AudienceNetworkActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -269,34 +219,7 @@
         <provider
             android:name="com.facebook.ads.AudienceNetworkContentProvider"
             android:authorities="com.avs.akashsingh.newapp.AudienceNetworkContentProvider"
-            android:exported="false" />
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.avs.akashsingh.newapp.firebaseinitprovider"
-            android:directBootAware="true"
-            android:exported="false"
-            android:initOrder="100" />
-
-        <activity
-            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <receiver
-            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-            android:enabled="true"
-            android:exported="false" >
-        </receiver>
-
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-            android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+            android:exported="false" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -314,14 +237,13 @@
             android:enabled="true"
             android:exported="false" />
 
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="com.avs.akashsingh.newapp.androidx-startup"
             android:exported="false" >
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup" />
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
                 android:value="androidx.startup" />
@@ -329,12 +251,6 @@
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
                 android:value="androidx.startup" />
         </provider>
-        <provider
-            android:name="androidx.work.impl.WorkManagerInitializer"
-            android:authorities="com.avs.akashsingh.newapp.workmanager-init"
-            android:directBootAware="false"
-            android:exported="false"
-            android:multiprocess="true" />
 
         <service
             android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
@@ -347,6 +263,11 @@
             android:enabled="@bool/enable_system_job_service_default"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:directBootAware="false"
+            android:enabled="@bool/enable_system_foreground_service_default"
+            android:exported="false" />
 
         <receiver
             android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
@@ -412,10 +333,49 @@
                 <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+            android:directBootAware="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.DUMP" >
+            <intent-filter>
+                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="com.avs.akashsingh.newapp.firebaseinitprovider"
+            android:directBootAware="true"
+            android:exported="false"
+            android:initOrder="100" />
+
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
 
         <service
-            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
             android:exported="false" />
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <service
             android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
             android:exported="false" >
@@ -431,6 +391,11 @@
 
         <receiver
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+            android:exported="false" />
+
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
             android:exported="false" />
     </application>
 

@@ -1,8 +1,8 @@
-#Wed Feb 15 09:18:22 PST 2023
+#Thu Feb 16 02:29:21 PST 2023
 path.4=2/classes.dex
 path.3=1/classes.dex
 path.2=0/classes.dex
-path.1=13/classes.dex
+path.1=0/classes.dex
 path.7=classes3.dex
 path.6=classes2.dex
 path.5=6/classes.dex
@@ -10,7 +10,7 @@ path.0=classes.dex
 base.4=C\:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
 base.3=C\:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
 base.2=C\:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.1=C\:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\13\\classes.dex
+base.1=C\:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.0=C\:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex

@@ -55,22 +55,23 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="5dp" />
 
-            <FrameLayout
-                android:id="@+id/native_ad_layout"
-                android:layout_width="300dp"
-                android:layout_height="250dp"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20sp"
-                android:layout_marginRight="16dp"
-                android:background="@color/white"
+            <LinearLayout
+                android:id="@+id/banner_container"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:orientation="horizontal"
                 android:visibility="visible"
-                android:layout_marginBottom="40dp"
-                app:cardElevation="20dp"
+                app:adSize="BANNER"
+                android:layout_marginTop="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CategoryRv" />
+                app:layout_constraintTop_toBottomOf="@+id/CategoryRv">
+
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

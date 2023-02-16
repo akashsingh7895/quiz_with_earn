@@ -30,23 +30,18 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxInterstitialAd;
-import com.applovin.mediation.nativeAds.MaxNativeAdListener;
-import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
-import com.applovin.mediation.nativeAds.MaxNativeAdView;
-import com.applovin.sdk.AppLovinSdk;
-import com.applovin.sdk.AppLovinSdkConfiguration;
+
 import com.avs.akashsingh.newapp.databinding.ActivityMainBinding;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
+import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.ads.AudienceNetworkAds;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
+import com.facebook.ads.NativeAd;
+import com.facebook.ads.NativeAdListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -64,7 +59,8 @@ import com.unity3d.services.banners.UnityBannerSize;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements MaxAdListener {
+
+public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private FirebaseFirestore database;
@@ -74,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
     long coins;
     String name;
     public static Dialog loadingDialog;
-
-
     String date,currentDate,todayDate;
     //spinweel
     int spinCounter = 0;
@@ -90,25 +84,18 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
     int spinTotal5= 15;
 
     private FirebaseAnalytics analytics;
-
-
     public static  String GameID = "4726509";
     public static String BannerID="Banner_Android";
     public static String InterID="Interstitial_Android";
     public static Boolean TestMode = false; //(select any one. if you test then you select true)
-
-    //applovin ads
-    private MaxInterstitialAd interstitialAd;
-    private MaxNativeAdLoader nativeAdLoader;
-    private MaxAd nativeAd;
-
     ProgressDialog progressDialog;
-    //applovin ads
+
 
     // fb ads
     private AdView adView;
     InterstitialAd fInterstitialAd;
     int AdsValue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,21 +132,7 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
 
 
 
-        //applovin
-        AppLovinSdk.getInstance( this ).setMediationProvider( "max" );
-        AppLovinSdk.initializeSdk( this, new AppLovinSdk.SdkInitializationListener() {
-            @Override
-            public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
-            {
-                // AppLovin SDK is initialized, start loading ads
-            }
-        } );
 
-        interstitialAd = new MaxInterstitialAd(getString(R.string.inter),this);
-        interstitialAd.setListener(this);
-        interstitialAd.loadAd();
-        loadnetiveAd();
-        //applovin
 
 
         UnityAds.initialize(this,GameID,TestMode);
@@ -184,15 +157,6 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
 
         loadInterstital();
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                UnityAds.show(MainActivity.this,InterID);
-//
-//            }
-//        }, 10000);
-
-
         // fb sdk
         AudienceNetworkAds.initialize(MainActivity.this);
         // fb sdk
@@ -202,6 +166,37 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
         adView = new AdView(this, getResources().getString(R.string.fb_banner_ads), AdSize.BANNER_HEIGHT_50);
         binding.bannerContainer.addView(adView);
         adView.loadAd();
+
+
+
+       AdListener adListener = new AdListener() {
+           @Override
+           public void onError(Ad ad, AdError adError) {
+//               Toast.makeText(
+//                               MainActivity.this,
+//                               "Error: " + adError.getErrorMessage(),
+//                               Toast.LENGTH_LONG)
+//                       .show();
+           }
+
+           @Override
+           public void onAdLoaded(Ad ad) {
+
+           }
+
+           @Override
+           public void onAdClicked(Ad ad) {
+
+           }
+
+           @Override
+           public void onLoggingImpression(Ad ad) {
+
+           }
+       };
+
+        adView.loadAd(adView.buildLoadAdConfig().withAdListener(adListener).build());
+
 
         //// banner ads
 
@@ -341,13 +336,6 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
 
             }
         });
-
-//        // open custom tab chrome for qreka
-//        String url = getString(R.string.play_qureka);
-//        CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
-//        customIntent.setToolbarColor(ContextCompat.getColor(MainActivity.this, R.color.darkBlue));
-//         //open custom tab chrome for qreka
-
         binding.dailyCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -388,88 +376,13 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
         });
 
 
-//        binding.tg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                try {
-//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+qlt2BCHVmUwyMTVl"));
-//                    PackageManager pm = getPackageManager();
-//                    if (intent.resolveActivity(pm) != null) {
-//                        startActivity(intent);
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "Error message", Toast.LENGTH_LONG).show();
-//                    }
-//                } catch (Exception ignored) {
-//                    Toast.makeText(MainActivity.this, ""+ignored, Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
 
 
         firebaseNotification();
 
     }
 
-    void loadnetiveAd(){
-
-        FrameLayout nativeAdContainer = findViewById( R.id.native_ad_layout );
-
-        nativeAdLoader = new MaxNativeAdLoader( getString(R.string.netive), this );
-        nativeAdLoader.setNativeAdListener( new MaxNativeAdListener()
-        {
-            @Override
-            public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad)
-            {
-                nativeAdContainer.setVisibility(View.VISIBLE);
-                loadingDialog.dismiss();
-                // Clean up any pre-existing native ad to prevent memory leaks.
-                if ( nativeAd != null )
-                {
-                    nativeAdLoader.destroy( nativeAd );
-                }
-
-                // Save ad for cleanup.
-                nativeAd = ad;
-
-                // Add ad view to view.
-                nativeAdContainer.removeAllViews();
-                nativeAdContainer.addView( nativeAdView );
-            }
-
-            @Override
-            public void onNativeAdLoadFailed(final String adUnitId, final MaxError error)
-            {
-                nativeAdContainer.setVisibility(View.GONE);
-               // Toast.makeText(MainActivity.this, "NetiveFailed", Toast.LENGTH_SHORT).show();
-                loadingDialog.dismiss();
-                // We recommend retrying with exponentially higher delays up to a maximum delay
-            }
-
-            @Override
-            public void onNativeAdClicked(final MaxAd ad)
-            {
-                // Optional click callback
-                loadingDialog.dismiss();
-            }
-        } );
-
-        nativeAdLoader.loadAd();
-
-    }
-
-
-    public static void openCustomTab(Activity activity, CustomTabsIntent customTabsIntent, Uri uri) {
-
-        String packageName = "com.android.chrome";
-        if (packageName != null) {
-            customTabsIntent.intent.setPackage(packageName);
-            customTabsIntent.launchUrl(activity, uri);
-        } else {
-            activity.startActivity(new Intent(Intent.ACTION_VIEW, uri));
-        }
-    }
-
-    private void loadInterstital() {
+        private void loadInterstital() {
         if (UnityAds.isInitialized()){
             UnityAds.load((InterID));
         }else {
@@ -648,36 +561,4 @@ public class MainActivity extends AppCompatActivity implements MaxAdListener {
         });
     }
 
-
-    @Override
-    public void onAdLoaded(MaxAd ad) {
-     //   Toast.makeText(MainActivity.this, "lodInter", Toast.LENGTH_SHORT).show();
-
     }
-
-    @Override
-    public void onAdDisplayed(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdHidden(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdClicked(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdLoadFailed(String adUnitId, MaxError error) {
-        //Toast.makeText(MainActivity.this, "Ads Not Load", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-    }
-}

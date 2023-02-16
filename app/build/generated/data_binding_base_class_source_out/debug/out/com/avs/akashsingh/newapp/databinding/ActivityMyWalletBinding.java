@@ -27,13 +27,13 @@ public final class ActivityMyWalletBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final LinearLayout adView;
-
-  @NonNull
   public final EditText amount;
 
   @NonNull
   public final ImageView backButton;
+
+  @NonNull
+  public final LinearLayout bannerContainer;
 
   @NonNull
   public final RadioButton g1;
@@ -83,17 +83,17 @@ public final class ActivityMyWalletBinding implements ViewBinding {
   @NonNull
   public final EditText withdrawMob;
 
-  private ActivityMyWalletBinding(@NonNull ConstraintLayout rootView, @NonNull LinearLayout adView,
-      @NonNull EditText amount, @NonNull ImageView backButton, @NonNull RadioButton g1,
+  private ActivityMyWalletBinding(@NonNull ConstraintLayout rootView, @NonNull EditText amount,
+      @NonNull ImageView backButton, @NonNull LinearLayout bannerContainer, @NonNull RadioButton g1,
       @NonNull RadioButton g2, @NonNull RadioButton g3, @NonNull RadioButton g4,
       @NonNull TextView gpay, @NonNull ImageView imageView3, @NonNull TextView pPay,
       @NonNull TextView paypal, @NonNull TextView paytm, @NonNull RadioGroup radioGroup,
       @NonNull Button requestButton, @NonNull TextView textView14, @NonNull TextView textView3,
       @NonNull TextView textView7, @NonNull Toolbar toolbar2, @NonNull EditText withdrawMob) {
     this.rootView = rootView;
-    this.adView = adView;
     this.amount = amount;
     this.backButton = backButton;
+    this.bannerContainer = bannerContainer;
     this.g1 = g1;
     this.g2 = g2;
     this.g3 = g3;
@@ -139,12 +139,6 @@ public final class ActivityMyWalletBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.adView;
-      LinearLayout adView = ViewBindings.findChildViewById(rootView, id);
-      if (adView == null) {
-        break missingId;
-      }
-
       id = R.id.amount;
       EditText amount = ViewBindings.findChildViewById(rootView, id);
       if (amount == null) {
@@ -154,6 +148,12 @@ public final class ActivityMyWalletBinding implements ViewBinding {
       id = R.id.backButton;
       ImageView backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
+        break missingId;
+      }
+
+      id = R.id.banner_container;
+      LinearLayout bannerContainer = ViewBindings.findChildViewById(rootView, id);
+      if (bannerContainer == null) {
         break missingId;
       }
 
@@ -253,9 +253,9 @@ public final class ActivityMyWalletBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMyWalletBinding((ConstraintLayout) rootView, adView, amount, backButton,
-          g1, g2, g3, g4, gpay, imageView3, pPay, paypal, paytm, radioGroup, requestButton,
-          textView14, textView3, textView7, toolbar2, withdrawMob);
+      return new ActivityMyWalletBinding((ConstraintLayout) rootView, amount, backButton,
+          bannerContainer, g1, g2, g3, g4, gpay, imageView3, pPay, paypal, paytm, radioGroup,
+          requestButton, textView14, textView3, textView7, toolbar2, withdrawMob);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

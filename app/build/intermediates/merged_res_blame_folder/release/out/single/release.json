@@ -20,16 +20,16 @@
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\edit_text.xml"
     },
     {
-        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_logo.png.flat",
-        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\logo.png"
+        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_spin_stand.webp.flat",
+        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\spin_stand.webp"
     },
     {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_happy.png.flat",
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\happy.png"
     },
     {
-        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_spin_stand.webp.flat",
-        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\spin_stand.webp"
+        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_logo.png.flat",
+        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\logo.png"
     },
     {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_spin_wheel.webp.flat",
@@ -92,16 +92,16 @@
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\option_right.xml"
     },
     {
-        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\layout_activity_splash.xml.flat",
-        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\activity_splash.xml"
+        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\layout_activity_spin_wheel.xml.flat",
+        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\activity_spin_wheel.xml"
     },
     {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_coins.png.flat",
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\coins.png"
     },
     {
-        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\layout_activity_spin_wheel.xml.flat",
-        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\activity_spin_wheel.xml"
+        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\activity_splash.xml"
     },
     {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable-v24_gfbox.png.flat",
@@ -128,12 +128,12 @@
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\category_item.xml"
     },
     {
-        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable-v24_background.jpg.flat",
-        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable-v24\\background.jpg"
-    },
-    {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_contact_us_icon.png.flat",
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable\\contact_us_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable-v24_background.jpg.flat",
+        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\drawable-v24\\background.jpg"
     },
     {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\merged_res\\release\\drawable_wal.png.flat",

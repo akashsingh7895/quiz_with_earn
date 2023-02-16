@@ -7,20 +7,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxInterstitialAd;
-import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
+
 import com.avs.akashsingh.newapp.Model.WithdrawRequest;
 
 import com.avs.akashsingh.newapp.databinding.ActivityMyWalletBinding;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +35,7 @@ import com.unity3d.ads.UnityAds;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyWalletActivity extends AppCompatActivity implements MaxAdListener {
+public class MyWalletActivity extends AppCompatActivity {
     ActivityMyWalletBinding binding;
     FirebaseFirestore database;
     FirebaseAuth firebaseAuth;
@@ -42,14 +45,11 @@ public class MyWalletActivity extends AppCompatActivity implements MaxAdListener
     private long coinsAmount;
 
     public static Dialog loadingDialog,loadingDialog1;
-
-    //applovin ads
-    private MaxInterstitialAd interstitialAd;
-    private MaxNativeAdLoader nativeAdLoader;
-    private MaxAd nativeAd;
-
-
     String paymentType;
+
+    // fb ads
+    private AdView adView;
+    InterstitialAd fInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +60,58 @@ public class MyWalletActivity extends AppCompatActivity implements MaxAdListener
         database = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
+        adView = new AdView(this, getResources().getString(R.string.fb_banner_ads1), AdSize.BANNER_HEIGHT_50);
+        binding.bannerContainer.addView(adView);
+        adView.loadAd();
 
-        interstitialAd = new MaxInterstitialAd(getString(R.string.inter),this);
-        interstitialAd.setListener(this);
-        interstitialAd.loadAd();
-       // loadnetiveAd();
-        //applovin
+
+        fInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_inter_ads));
+        fInterstitialAd.loadAd();
+        // Create listeners for the Interstitial Ad
+
+        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                finish();
+
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                Log.d("error",adError.getErrorMessage());
+
+
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+
+
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+//
+
+            }
+        };
+
+        fInterstitialAd.loadAd(
+                fInterstitialAd.buildLoadAdConfig()
+                        .withAdListener(interstitialAdListener)
+                        .build());
+
 
 //
 
@@ -73,11 +119,11 @@ public class MyWalletActivity extends AppCompatActivity implements MaxAdListener
             @Override
             public void onClick(View v) {
 //
-                if (interstitialAd.isReady()){
-                    interstitialAd.showAd();
-                    finish();
+                if (fInterstitialAd.isAdLoaded()){
+                    fInterstitialAd.show();
                 }else {
                     finish();
+
                 }
 
             }
@@ -267,43 +313,11 @@ public class MyWalletActivity extends AppCompatActivity implements MaxAdListener
 
     @Override
     public void onBackPressed() {
-
-      //  finish();
-        if (interstitialAd.isReady()){
-            interstitialAd.showAd();
-            finish();
+        if (fInterstitialAd.isAdLoaded()){
+            fInterstitialAd.show();
         }else {
             finish();
+
         }
-    }
-
-    @Override
-    public void onAdLoaded(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdDisplayed(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdHidden(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdClicked(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdLoadFailed(String adUnitId, MaxError error) {
-
-    }
-
-    @Override
-    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
     }
 }

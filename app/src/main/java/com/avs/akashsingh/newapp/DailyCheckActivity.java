@@ -15,14 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.MaxReward;
-import com.applovin.mediation.MaxRewardedAdListener;
-import com.applovin.mediation.ads.MaxInterstitialAd;
-import com.applovin.mediation.ads.MaxRewardedAd;
-import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
+
 import com.avs.akashsingh.newapp.databinding.ActivityDailyCheckBinding;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -40,7 +33,7 @@ import java.util.Calendar;
 import java.util.Objects;
 import java.util.Random;
 
-public class DailyCheckActivity extends AppCompatActivity implements MaxAdListener, MaxRewardedAdListener {
+public class DailyCheckActivity extends AppCompatActivity{
     ActivityDailyCheckBinding binding;
 
     int spinCounter4 = 0;
@@ -57,12 +50,6 @@ public class DailyCheckActivity extends AppCompatActivity implements MaxAdListen
 
 
 
-    private MaxInterstitialAd interstitialAd;
-    private MaxNativeAdLoader nativeAdLoader;
-    private MaxAd nativeAd;
-
-    private MaxRewardedAd rewardedAd;
-    private int           retryAttempt;
 
 
     // fb ads
@@ -77,10 +64,6 @@ public class DailyCheckActivity extends AppCompatActivity implements MaxAdListen
         setContentView(binding.getRoot());
 
 
-        interstitialAd = new MaxInterstitialAd(getString(R.string.inter),this);
-        interstitialAd.setListener(this);
-        interstitialAd.loadAd();
-        createRewardedAd();
 
         dialog = new Dialog(this);
         dialog1 = new Dialog(this);
@@ -305,76 +288,6 @@ public class DailyCheckActivity extends AppCompatActivity implements MaxAdListen
             startActivity(intent);
             finish();
         }
-    }
-
-    void createRewardedAd(){
-
-        rewardedAd = MaxRewardedAd.getInstance( getString(R.string.reward), this );
-        rewardedAd.setListener( this );
-
-        rewardedAd.loadAd();
-    }
-
-
-
-    @Override
-    public void onAdLoaded(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdDisplayed(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdHidden(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdClicked(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdLoadFailed(String adUnitId, MaxError error) {
-
-    }
-
-    @Override
-    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-    }
-
-    @Override
-    public void onRewardedVideoStarted(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onRewardedVideoCompleted(MaxAd ad) {
-
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        firestore.collection("USERS")
-                .document(FirebaseAuth.getInstance().getUid())
-                .update("coins", FieldValue.increment(randomNumber))
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            //dialog.show();
-//
-                        }else {
-                            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-    }
-
-    @Override
-    public void onUserRewarded(MaxAd ad, MaxReward reward) {
 
     }
 }

@@ -11,7 +11,6 @@ com/avs/akashsingh/newapp/ScratchCardActivity.java
  com.avs.akashsingh.newapp.ScratchCardActivity$2$1$2
  com.avs.akashsingh.newapp.ScratchCardActivity$3
  com.avs.akashsingh.newapp.ScratchCardActivity$4
- com.avs.akashsingh.newapp.ScratchCardActivity$5
 com/avs/akashsingh/newapp/BuildConfig.java
  com.avs.akashsingh.newapp.BuildConfig
 com/avs/akashsingh/newapp/LogInActivity.java
@@ -73,7 +72,6 @@ com/avs/akashsingh/newapp/DailyCheckActivity.java
  com.avs.akashsingh.newapp.DailyCheckActivity$2$1$2
  com.avs.akashsingh.newapp.DailyCheckActivity$2$2
  com.avs.akashsingh.newapp.DailyCheckActivity$3
- com.avs.akashsingh.newapp.DailyCheckActivity$4
 com/avs/akashsingh/newapp/databinding/ActivityLeaderBordBinding.java
  com.avs.akashsingh.newapp.databinding.ActivityLeaderBordBinding
 com/avs/akashsingh/newapp/databinding/RequestSendDiloagBinding.java
@@ -109,8 +107,9 @@ com/avs/akashsingh/newapp/MyWalletActivity.java
  com.avs.akashsingh.newapp.MyWalletActivity$2
  com.avs.akashsingh.newapp.MyWalletActivity$3
  com.avs.akashsingh.newapp.MyWalletActivity$4
- com.avs.akashsingh.newapp.MyWalletActivity$4$1
- com.avs.akashsingh.newapp.MyWalletActivity$4$1$1
+ com.avs.akashsingh.newapp.MyWalletActivity$5
+ com.avs.akashsingh.newapp.MyWalletActivity$5$1
+ com.avs.akashsingh.newapp.MyWalletActivity$5$1$1
 com/avs/akashsingh/newapp/Model/Question.java
  com.avs.akashsingh.newapp.Model.Question
 com/avs/akashsingh/newapp/ProfileActivity.java
@@ -137,10 +136,11 @@ com/avs/akashsingh/newapp/databinding/ActivityQuizBinding.java
 com/avs/akashsingh/newapp/QuizActivity.java
  com.avs.akashsingh.newapp.QuizActivity
  com.avs.akashsingh.newapp.QuizActivity$1
- com.avs.akashsingh.newapp.QuizActivity$1$1
  com.avs.akashsingh.newapp.QuizActivity$2
+ com.avs.akashsingh.newapp.QuizActivity$2$1
  com.avs.akashsingh.newapp.QuizActivity$3
  com.avs.akashsingh.newapp.QuizActivity$4
+ com.avs.akashsingh.newapp.QuizActivity$5
 com/avs/akashsingh/newapp/databinding/CategoryItemBinding.java
  com.avs.akashsingh.newapp.databinding.CategoryItemBinding
 com/avs/akashsingh/newapp/databinding/ActivityMyWalletBinding.java
@@ -149,7 +149,6 @@ com/avs/akashsingh/newapp/databinding/ProgressDiloagBinding.java
  com.avs.akashsingh.newapp.databinding.ProgressDiloagBinding
 com/avs/akashsingh/newapp/Model/appClass.java
  com.avs.akashsingh.newapp.Model.appClass
- com.avs.akashsingh.newapp.Model.appClass$1
 com/avs/akashsingh/newapp/databinding/InfcumentCoinsDiolagBinding.java
  com.avs.akashsingh.newapp.databinding.InfcumentCoinsDiolagBinding
 com/avs/akashsingh/newapp/databinding/ActivityResultBinding.java
@@ -168,8 +167,7 @@ com/avs/akashsingh/newapp/MainActivity.java
  com.avs.akashsingh.newapp.MainActivity$12
  com.avs.akashsingh.newapp.MainActivity$13
  com.avs.akashsingh.newapp.MainActivity$14
- com.avs.akashsingh.newapp.MainActivity$15
- com.avs.akashsingh.newapp.MainActivity$15$1
+ com.avs.akashsingh.newapp.MainActivity$14$1
  com.avs.akashsingh.newapp.MainActivity$2
  com.avs.akashsingh.newapp.MainActivity$3
  com.avs.akashsingh.newapp.MainActivity$4

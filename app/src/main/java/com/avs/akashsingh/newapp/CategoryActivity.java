@@ -11,21 +11,22 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxInterstitialAd;
-import com.applovin.mediation.nativeAds.MaxNativeAdListener;
-import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
-import com.applovin.mediation.nativeAds.MaxNativeAdView;
+
 import com.avs.akashsingh.newapp.Model.CategoryAdapter;
 import com.avs.akashsingh.newapp.Model.CategoryModel;
 
 import com.avs.akashsingh.newapp.databinding.ActivityCategoryBinding;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,17 +35,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class CategoryActivity extends AppCompatActivity implements MaxAdListener {
+public class CategoryActivity extends AppCompatActivity  {
 
     ActivityCategoryBinding binding;
     ArrayList<CategoryModel> categoryModels;
     FirebaseFirestore database;
     public static Dialog loadingDialog;
 
-    //applovin ads
-    private MaxInterstitialAd interstitialAd;
-    private MaxNativeAdLoader nativeAdLoader;
-    private MaxAd nativeAd;
+    // fb ads
+    private AdView adView;
+    InterstitialAd fInterstitialAd;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,24 +57,75 @@ public class CategoryActivity extends AppCompatActivity implements MaxAdListener
         categoryModels = new ArrayList<>();
         database = FirebaseFirestore.getInstance();
 
-        interstitialAd = new MaxInterstitialAd(getString(R.string.inter),this);
-        interstitialAd.setListener(this);
-        interstitialAd.loadAd();
-        loadnetiveAd();
-        //applovin
 
 
-        // open custom tab chrome for qreka
-        String url = getString(R.string.play_qureka);
-        CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
-        customIntent.setToolbarColor(ContextCompat.getColor(CategoryActivity.this, R.color.darkBlue));
-        // open custom tab chrome for qreka
+        adView = new AdView(this, getResources().getString(R.string.fb_banner_ads), AdSize.BANNER_HEIGHT_50);
+        binding.bannerContainer.addView(adView);
+        adView.loadAd();
+
+
+        fInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_inter_ads));
+        fInterstitialAd.loadAd();
+        // Create listeners for the Interstitial Ad
+
+        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                Intent intent = new Intent(CategoryActivity.this,MainActivity.class);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                Log.d("error",adError.getErrorMessage());
+
+
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+
+
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+//
+
+            }
+        };
+
+        fInterstitialAd.loadAd(
+                fInterstitialAd.buildLoadAdConfig()
+                        .withAdListener(interstitialAdListener)
+                        .build());
+
+
+
+
 
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startActivity(new Intent(CategoryActivity.this,MainActivity.class));
-              finish();
+                if (fInterstitialAd.isAdLoaded()){
+                    fInterstitialAd.show();
+                }else {
+                    startActivity(new Intent(CategoryActivity.this,MainActivity.class));
+                    finish();
+                }
+
             }
         });
 
@@ -115,99 +168,21 @@ public class CategoryActivity extends AppCompatActivity implements MaxAdListener
 
     }
 
-    void loadnetiveAd(){
-
-        FrameLayout nativeAdContainer = findViewById( R.id.native_ad_layout );
-
-        nativeAdLoader = new MaxNativeAdLoader( getString(R.string.netive), this );
-        nativeAdLoader.setNativeAdListener( new MaxNativeAdListener()
-        {
-            @Override
-            public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad)
-            {
-                nativeAdContainer.setVisibility(View.VISIBLE);
-                loadingDialog.dismiss();
-                // Clean up any pre-existing native ad to prevent memory leaks.
-                if ( nativeAd != null )
-                {
-                    nativeAdLoader.destroy( nativeAd );
-                }
-
-                // Save ad for cleanup.
-                nativeAd = ad;
-
-                // Add ad view to view.
-                nativeAdContainer.removeAllViews();
-                nativeAdContainer.addView( nativeAdView );
-            }
-
-            @Override
-            public void onNativeAdLoadFailed(final String adUnitId, final MaxError error)
-            {
-                nativeAdContainer.setVisibility(View.GONE);
-                // Toast.makeText(MainActivity.this, "NetiveFailed", Toast.LENGTH_SHORT).show();
-                loadingDialog.dismiss();
-                // We recommend retrying with exponentially higher delays up to a maximum delay
-            }
-
-            @Override
-            public void onNativeAdClicked(final MaxAd ad)
-            {
-                // Optional click callback
-                loadingDialog.dismiss();
-            }
-        } );
-
-        nativeAdLoader.loadAd();
-
-    }
 
 
-    public static void openCustomTab(Activity activity, CustomTabsIntent customTabsIntent, Uri uri) {
 
-        String packageName = "com.android.chrome";
-        if (packageName != null) {
-            customTabsIntent.intent.setPackage(packageName);
-            customTabsIntent.launchUrl(activity, uri);
-        } else {
-            activity.startActivity(new Intent(Intent.ACTION_VIEW, uri));
-        }
-    }
+
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(CategoryActivity.this,MainActivity.class));
-        finish();
+        if (fInterstitialAd.isAdLoaded()){
+            fInterstitialAd.show();
+        }else {
+            startActivity(new Intent(CategoryActivity.this,MainActivity.class));
+            finish();
+        }
     }
 
-    @Override
-    public void onAdLoaded(MaxAd ad) {
 
-    }
-
-    @Override
-    public void onAdDisplayed(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdHidden(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdClicked(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdLoadFailed(String adUnitId, MaxError error) {
-
-    }
-
-    @Override
-    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-    }
 
 }

@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.avs.akashsingh.newapp.R;
+import com.facebook.ads.NativeAdLayout;
 import com.google.android.material.navigation.NavigationView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
@@ -82,6 +83,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final CardView myWallet;
 
   @NonNull
+  public final NativeAdLayout nativeAdContainer;
+
+  @NonNull
   public final FrameLayout nativeAdLayout;
 
   @NonNull
@@ -115,9 +119,6 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView textView4;
 
   @NonNull
-  public final LinearLayout tg;
-
-  @NonNull
   public final Toolbar toolbar;
 
   private ActivityMainBinding(@NonNull DrawerLayout rootView, @NonNull CardView allcategories,
@@ -128,11 +129,11 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull CircleImageView imageView15, @NonNull ImageView imageView2,
       @NonNull ImageView imageView4, @NonNull LinearLayout ll1, @NonNull LinearLayout ll2,
       @NonNull LinearLayout ll3, @NonNull CardView myProfile, @NonNull CardView myWallet,
-      @NonNull FrameLayout nativeAdLayout, @NonNull NavigationView navigationView,
-      @NonNull RelativeLayout rel, @NonNull CardView scratchCard, @NonNull CardView spinWheel,
-      @NonNull TextView textView, @NonNull TextView textView1, @NonNull TextView textView14,
-      @NonNull TextView textView15, @NonNull TextView textView2, @NonNull TextView textView4,
-      @NonNull LinearLayout tg, @NonNull Toolbar toolbar) {
+      @NonNull NativeAdLayout nativeAdContainer, @NonNull FrameLayout nativeAdLayout,
+      @NonNull NavigationView navigationView, @NonNull RelativeLayout rel,
+      @NonNull CardView scratchCard, @NonNull CardView spinWheel, @NonNull TextView textView,
+      @NonNull TextView textView1, @NonNull TextView textView14, @NonNull TextView textView15,
+      @NonNull TextView textView2, @NonNull TextView textView4, @NonNull Toolbar toolbar) {
     this.rootView = rootView;
     this.allcategories = allcategories;
     this.bannerContainer = bannerContainer;
@@ -152,6 +153,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.ll3 = ll3;
     this.myProfile = myProfile;
     this.myWallet = myWallet;
+    this.nativeAdContainer = nativeAdContainer;
     this.nativeAdLayout = nativeAdLayout;
     this.navigationView = navigationView;
     this.rel = rel;
@@ -163,7 +165,6 @@ public final class ActivityMainBinding implements ViewBinding {
     this.textView15 = textView15;
     this.textView2 = textView2;
     this.textView4 = textView4;
-    this.tg = tg;
     this.toolbar = toolbar;
   }
 
@@ -298,6 +299,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.native_ad_container;
+      NativeAdLayout nativeAdContainer = ViewBindings.findChildViewById(rootView, id);
+      if (nativeAdContainer == null) {
+        break missingId;
+      }
+
       id = R.id.native_ad_layout;
       FrameLayout nativeAdLayout = ViewBindings.findChildViewById(rootView, id);
       if (nativeAdLayout == null) {
@@ -364,12 +371,6 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tg;
-      LinearLayout tg = ViewBindings.findChildViewById(rootView, id);
-      if (tg == null) {
-        break missingId;
-      }
-
       id = R.id.toolbar;
       Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
       if (toolbar == null) {
@@ -379,8 +380,8 @@ public final class ActivityMainBinding implements ViewBinding {
       return new ActivityMainBinding((DrawerLayout) rootView, allcategories, bannerContainer,
           coinsTotal, dailyCheckIn, drawerLayout, helloReaders, helloReaders1, imageView,
           imageView1, imageView14, imageView15, imageView2, imageView4, ll1, ll2, ll3, myProfile,
-          myWallet, nativeAdLayout, navigationView, rel, scratchCard, spinWheel, textView,
-          textView1, textView14, textView15, textView2, textView4, tg, toolbar);
+          myWallet, nativeAdContainer, nativeAdLayout, navigationView, rel, scratchCard, spinWheel,
+          textView, textView1, textView14, textView15, textView2, textView4, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

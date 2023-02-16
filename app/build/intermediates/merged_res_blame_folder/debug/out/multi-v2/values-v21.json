@@ -4,25 +4,6 @@
             "outputFile": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zeb\\.gradle\\caches\\transforms-3\\f2344bd3ccb92574f9997f525d1e61cc\\transformed\\jetified-applovin-sdk-11.3.3\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,8,11",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,534,788",
-                        "endLines": "7,10,15",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "529,783,1176"
-                    },
-                    "to": {
-                        "startLines": "566,572,575",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "39439,39918,40172",
-                        "endLines": "571,574,579",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "39913,40167,40560"
-                    }
-                },
-                {
                     "source": "C:\\Users\\zeb\\.gradle\\caches\\transforms-3\\c7220573e40aa30730232dde3fd8eccf\\transformed\\core-1.7.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",

@@ -9,19 +9,22 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxInterstitialAd;
-import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
+
 import com.avs.akashsingh.newapp.Model.Question;
 
 import com.avs.akashsingh.newapp.databinding.ActivityQuizBinding;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,7 +34,7 @@ import com.unity3d.ads.UnityAds;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class QuizActivity extends AppCompatActivity implements MaxAdListener {
+public class QuizActivity extends AppCompatActivity{
 
     ActivityQuizBinding binding;
 
@@ -44,10 +47,11 @@ public class QuizActivity extends AppCompatActivity implements MaxAdListener {
 
     public static Dialog loadingDialog;
 
-    //applovin ads
-    private MaxInterstitialAd interstitialAd;
-    private MaxNativeAdLoader nativeAdLoader;
-    private MaxAd nativeAd;
+    // fb ads
+    private AdView adView;
+    InterstitialAd fInterstitialAd;
+
+
 
 
     @Override
@@ -64,10 +68,61 @@ public class QuizActivity extends AppCompatActivity implements MaxAdListener {
        binding.toolText.setText(categoryName + " quiz");
 
 
-        interstitialAd = new MaxInterstitialAd(getString(R.string.inter),this);
-        interstitialAd.setListener(this);
-        interstitialAd.loadAd();
-        // loadnetiveAd();
+
+
+        adView = new AdView(this, getResources().getString(R.string.fb_banner_ads2), AdSize.BANNER_HEIGHT_50);
+        binding.bannerContainer.addView(adView);
+        adView.loadAd();
+
+
+        fInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_inter_ads));
+        fInterstitialAd.loadAd();
+        // Create listeners for the Interstitial Ad
+
+        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                Intent intent = new Intent(QuizActivity.this,MainActivity.class);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                Log.d("error",adError.getErrorMessage());
+
+
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+
+
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+//
+
+            }
+        };
+
+        fInterstitialAd.loadAd(
+                fInterstitialAd.buildLoadAdConfig()
+                        .withAdListener(interstitialAdListener)
+                        .build());
+
 
 
         ///loading Dialog
@@ -129,8 +184,13 @@ public class QuizActivity extends AppCompatActivity implements MaxAdListener {
             @Override
             public void onClick(View v) {
                // finish();
-                Intent intent = new Intent(QuizActivity.this,MainActivity.class);
-                startActivity(intent);
+                if (fInterstitialAd.isAdLoaded()){
+                    fInterstitialAd.show();
+                }else {
+                    Intent intent = new Intent(QuizActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -247,20 +307,11 @@ public class QuizActivity extends AppCompatActivity implements MaxAdListener {
                     setClickable(true);
                     break;
                 }else {
-                    if (interstitialAd.isReady()){
-                        interstitialAd.showAd();
-                        Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
-                        intent.putExtra("correct", correctAnswers);
-                        intent.putExtra("total", questions.size());
-                        startActivity(intent);
-                        Toast.makeText(this, "Quiz Finished.", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
-                        intent.putExtra("correct", correctAnswers);
-                        intent.putExtra("total", questions.size());
-                        startActivity(intent);
-                        Toast.makeText(this, "Quiz Finished.", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
+                    intent.putExtra("correct", correctAnswers);
+                    intent.putExtra("total", questions.size());
+                    startActivity(intent);
+                    Toast.makeText(this, "Quiz Finished.", Toast.LENGTH_SHORT).show();
 
                 }
         }
@@ -283,33 +334,5 @@ public class QuizActivity extends AppCompatActivity implements MaxAdListener {
         binding.option4.setClickable(b);
     }
 
-    @Override
-    public void onAdLoaded(MaxAd ad) {
 
-    }
-
-    @Override
-    public void onAdDisplayed(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdHidden(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdClicked(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdLoadFailed(String adUnitId, MaxError error) {
-
-    }
-
-    @Override
-    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-    }
 }

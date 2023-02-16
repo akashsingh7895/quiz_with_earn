@@ -4,16 +4,6 @@
             "outputFile": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zeb\\.gradle\\caches\\transforms-3\\0a91a22b6ac2d1f1711b393bf7c4b884\\transformed\\work-runtime-2.1.0\\res\\values-v23\\values-v23.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,121",
-                        "endColumns": "65,62",
-                        "endOffsets": "116,179"
-                    }
-                },
-                {
                     "source": "C:\\Users\\zeb\\.gradle\\caches\\transforms-3\\c1618ae235f30f00fbb398474a4bf8d8\\transformed\\material-1.6.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,8,13,17,20,23,26,31,34,38",
@@ -30,6 +20,16 @@
                         "endLines": "57,60,65,69,72,75,78,83,86,90,94",
                         "endColumns": "10,10,10,10,10,10,10,10,10,10,10",
                         "endOffsets": "4014,4224,4544,4781,4988,5195,5398,5730,5932,6197,6470"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\zeb\\.gradle\\caches\\transforms-3\\a6211a4163a8fea0a3d80ec75233263e\\transformed\\work-runtime-2.7.1\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,121",
+                        "endColumns": "65,62",
+                        "endOffsets": "116,179"
                     }
                 },
                 {

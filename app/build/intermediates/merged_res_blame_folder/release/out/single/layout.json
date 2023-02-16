@@ -16,16 +16,16 @@
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\scratch_diloag.xml"
     },
     {
-        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_splash.xml",
-        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\activity_splash.xml"
+        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\category_item.xml",
+        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\category_item.xml"
     },
     {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\loading_progress_dialog.xml",
         "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\loading_progress_dialog.xml"
     },
     {
-        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\category_item.xml",
-        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\category_item.xml"
+        "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\src\\main\\res\\layout\\activity_splash.xml"
     },
     {
         "merged": "C:\\Users\\zeb\\Android Studio Project\\quizwithEarn\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_leader_bord.xml",

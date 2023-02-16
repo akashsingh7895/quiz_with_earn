@@ -47,12 +47,16 @@
 
     <!--    Facebook Ads Test  -->
 
-    <string name="fb_banner_ads">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
-    <string name="fb_inter_ads">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>
+<!--    <string name="fb_banner_ads">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>-->
+<!--    <string name="fb_inter_ads">IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID</string>-->
 
     <!--    Facebook Ads Live  -->
-<!--    <string name="fb_banner_ads">878960280020939_878970730019894</string>-->
-<!--    <string name="fb_inter_ads">878960280020939_878969426686691</string>-->
+    <string name="fb_banner_ads">878960280020939_880945283155772</string>
+    <string name="fb_banner_ads1">878960280020939_880945146489119</string>
+    <string name="fb_banner_ads2">878960280020939_880945453155755</string>
+
+    <string name="fb_inter_ads">878960280020939_878969426686691</string>
+    <string name="fb_Netive_ads">878960280020939_880903869826580</string>
 
 
 

@@ -4,8 +4,8 @@ package com.avs.akashsingh.newapp.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -29,22 +29,23 @@ public final class ActivityCategoryBinding implements ViewBinding {
   public final ImageView backButton;
 
   @NonNull
-  public final ConstraintLayout ll;
+  public final LinearLayout bannerContainer;
 
   @NonNull
-  public final FrameLayout nativeAdLayout;
+  public final ConstraintLayout ll;
 
   @NonNull
   public final Toolbar toolbar;
 
   private ActivityCategoryBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView CategoryRv, @NonNull ImageView backButton, @NonNull ConstraintLayout ll,
-      @NonNull FrameLayout nativeAdLayout, @NonNull Toolbar toolbar) {
+      @NonNull RecyclerView CategoryRv, @NonNull ImageView backButton,
+      @NonNull LinearLayout bannerContainer, @NonNull ConstraintLayout ll,
+      @NonNull Toolbar toolbar) {
     this.rootView = rootView;
     this.CategoryRv = CategoryRv;
     this.backButton = backButton;
+    this.bannerContainer = bannerContainer;
     this.ll = ll;
-    this.nativeAdLayout = nativeAdLayout;
     this.toolbar = toolbar;
   }
 
@@ -87,15 +88,15 @@ public final class ActivityCategoryBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.ll;
-      ConstraintLayout ll = ViewBindings.findChildViewById(rootView, id);
-      if (ll == null) {
+      id = R.id.banner_container;
+      LinearLayout bannerContainer = ViewBindings.findChildViewById(rootView, id);
+      if (bannerContainer == null) {
         break missingId;
       }
 
-      id = R.id.native_ad_layout;
-      FrameLayout nativeAdLayout = ViewBindings.findChildViewById(rootView, id);
-      if (nativeAdLayout == null) {
+      id = R.id.ll;
+      ConstraintLayout ll = ViewBindings.findChildViewById(rootView, id);
+      if (ll == null) {
         break missingId;
       }
 
@@ -105,8 +106,8 @@ public final class ActivityCategoryBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityCategoryBinding((ConstraintLayout) rootView, CategoryRv, backButton, ll,
-          nativeAdLayout, toolbar);
+      return new ActivityCategoryBinding((ConstraintLayout) rootView, CategoryRv, backButton,
+          bannerContainer, ll, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

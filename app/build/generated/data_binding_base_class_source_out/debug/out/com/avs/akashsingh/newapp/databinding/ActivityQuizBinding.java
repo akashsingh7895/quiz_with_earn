@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,9 @@ public final class ActivityQuizBinding implements ViewBinding {
 
   @NonNull
   public final ImageView backButton;
+
+  @NonNull
+  public final LinearLayout bannerContainer;
 
   @NonNull
   public final TextView btnNext;
@@ -58,12 +62,13 @@ public final class ActivityQuizBinding implements ViewBinding {
   public final Toolbar toolbar3;
 
   private ActivityQuizBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView backButton,
-      @NonNull TextView btnNext, @NonNull TextView option1, @NonNull TextView option2,
-      @NonNull TextView option3, @NonNull TextView option4, @NonNull TextView question,
-      @NonNull TextView questionCounter, @NonNull TextView quiz, @NonNull TextView timer,
-      @NonNull TextView toolText, @NonNull Toolbar toolbar3) {
+      @NonNull LinearLayout bannerContainer, @NonNull TextView btnNext, @NonNull TextView option1,
+      @NonNull TextView option2, @NonNull TextView option3, @NonNull TextView option4,
+      @NonNull TextView question, @NonNull TextView questionCounter, @NonNull TextView quiz,
+      @NonNull TextView timer, @NonNull TextView toolText, @NonNull Toolbar toolbar3) {
     this.rootView = rootView;
     this.backButton = backButton;
+    this.bannerContainer = bannerContainer;
     this.btnNext = btnNext;
     this.option1 = option1;
     this.option2 = option2;
@@ -107,6 +112,12 @@ public final class ActivityQuizBinding implements ViewBinding {
       id = R.id.backButton;
       ImageView backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
+        break missingId;
+      }
+
+      id = R.id.banner_container;
+      LinearLayout bannerContainer = ViewBindings.findChildViewById(rootView, id);
+      if (bannerContainer == null) {
         break missingId;
       }
 
@@ -176,8 +187,9 @@ public final class ActivityQuizBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityQuizBinding((ConstraintLayout) rootView, backButton, btnNext, option1,
-          option2, option3, option4, question, questionCounter, quiz, timer, toolText, toolbar3);
+      return new ActivityQuizBinding((ConstraintLayout) rootView, backButton, bannerContainer,
+          btnNext, option1, option2, option3, option4, question, questionCounter, quiz, timer,
+          toolText, toolbar3);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

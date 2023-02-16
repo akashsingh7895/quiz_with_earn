@@ -9,11 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxInterstitialAd;
-import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
+
 import com.avs.akashsingh.newapp.databinding.ActivityResultBinding;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -25,15 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ResultActivity extends AppCompatActivity implements MaxAdListener {
+public class ResultActivity extends AppCompatActivity {
 
     ActivityResultBinding binding;
     int POINTS = 10;
 
-    //applovin ads
-    private MaxInterstitialAd interstitialAd;
-    private MaxNativeAdLoader nativeAdLoader;
-    private MaxAd nativeAd;
 
     // fb ads
     private AdView adView;
@@ -46,9 +38,6 @@ public class ResultActivity extends AppCompatActivity implements MaxAdListener {
         binding = ActivityResultBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        interstitialAd = new MaxInterstitialAd(getString(R.string.inter),this);
-        interstitialAd.setListener(this);
-        interstitialAd.loadAd();
 
         //// banner ads
         adView = new AdView(this, getResources().getString(R.string.fb_banner_ads), AdSize.BANNER_HEIGHT_50);
@@ -139,47 +128,12 @@ public class ResultActivity extends AppCompatActivity implements MaxAdListener {
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (interstitialAd.isReady()){
-                    interstitialAd.showAd();
-                    startActivity(new Intent(ResultActivity.this, MainActivity.class));
-                    finishAffinity();
-                }else {
-                    startActivity(new Intent(ResultActivity.this, MainActivity.class));
-                    finishAffinity();
-                }
+                startActivity(new Intent(ResultActivity.this, MainActivity.class));
+                finishAffinity();
             }
         });
 
 
     }
 
-    @Override
-    public void onAdLoaded(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdDisplayed(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdHidden(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdClicked(MaxAd ad) {
-
-    }
-
-    @Override
-    public void onAdLoadFailed(String adUnitId, MaxError error) {
-
-    }
-
-    @Override
-    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-    }
 }
