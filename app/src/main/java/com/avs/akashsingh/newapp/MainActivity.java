@@ -167,9 +167,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bannerContainer.addView(adView);
         adView.loadAd();
 
-
-
-       AdListener adListener = new AdListener() {
+        AdListener adListener = new AdListener() {
            @Override
            public void onError(Ad ad, AdError adError) {
 //               Toast.makeText(

@@ -106,6 +106,7 @@
           </LinearLayout>
 
 
+
           <FrameLayout
               android:id="@+id/native_ad_layout"
               android:layout_width="300dp"

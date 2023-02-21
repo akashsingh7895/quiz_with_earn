@@ -44,6 +44,10 @@ public class MyWalletActivity extends AppCompatActivity {
     private String name;
     private long coinsAmount;
 
+
+
+
+
     public static Dialog loadingDialog,loadingDialog1;
     String paymentType;
 
